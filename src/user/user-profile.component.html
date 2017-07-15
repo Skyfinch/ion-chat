@@ -1,0 +1,4 @@
+<ion-content padding>
+    bonjour {{ (user | async)?.uid }}
+    <button ion-button outline (click)="logout()">Logout</button> 
+</ion-content>

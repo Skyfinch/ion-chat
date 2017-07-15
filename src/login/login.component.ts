@@ -12,18 +12,16 @@ import { Home } from '../home/home.component';
 })
 export class Login {
  
-  constructor(private nav : Nav, private afAuth: AngularFireAuth) { }
+  constructor(private afAuth: AngularFireAuth, private nav : Nav) {
+   }
  
    signInWithFacebook() {
     this.afAuth.auth
       .signInWithPopup(new firebase.auth.FacebookAuthProvider())
       .then(res => {
           console.log(res);
-           this.nav.setRoot( Home, {});
+           this.nav.setRoot( Home, {index: "0"});
         });
-  }
+    }
 
-  signOut() {
-    this.afAuth.auth.signOut();
-  }
 }

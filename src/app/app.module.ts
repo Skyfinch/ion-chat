@@ -5,6 +5,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { Chat } from '../chat/chat.component';
+import { UserProfile } from '../user/user-profile.component';
 import { Login } from '../login/login.component';
 import { Home } from '../home/home.component';
 
@@ -15,12 +16,15 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
+import { Auth } from '../services/auth.service';
+
 import {env} from '../env/env'
 
 @NgModule({
   declarations: [
     MyApp,
     Chat,
+    UserProfile,
     Login,
     Home
   ],
@@ -35,10 +39,12 @@ import {env} from '../env/env'
   entryComponents: [
     MyApp,
     Chat,
+    UserProfile,
     Login,
     Home
   ],
   providers: [
+    Auth,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

@@ -1,16 +1,21 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavParams } from 'ionic-angular';
 
 import { Chat } from '../chat/chat.component';
+import { UserProfile } from '../user/user-profile.component';
 
 @Component({
   templateUrl: 'home.component.html'
 })
 export class Home {
 
-  tab1Root = Chat;
+  index = 0;
+  
+  tab1Root = UserProfile;
+  tab2Root = Chat;
 
-  constructor() {
-
+  constructor(navParams : NavParams){
+   this.index = navParams.get('index');
   }
+
 }
