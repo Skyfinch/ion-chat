@@ -14,4 +14,8 @@ export class UserService {
         return this.usersRef.child(userUid).once('value');
     }
 
+    getUsers(){
+        return this.usersRef();
+    }
+
 }

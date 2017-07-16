@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavParams } from 'ionic-angular';
 
-import { Chat } from '../chat/chat.component';
+import { ChatsList } from '../chat/chats-list.component';
 import { UserProfile } from '../user/user-profile.component';
 
 @Component({
@@ -12,7 +12,7 @@ export class Home {
   index = 0;
   
   tab1Root = UserProfile;
-  tab2Root = Chat;
+  tab2Root = ChatsList;
 
   constructor(navParams : NavParams){
    this.index = navParams.get('index');

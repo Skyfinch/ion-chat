@@ -1,0 +1,9 @@
+<ion-content> 
+    <ion-item>
+        <ion-label color="primary" stacked>Chat title</ion-label>
+        <ion-input required [(ngModel)]="chat.title" type="text" placeholder="Title"></ion-input>
+    </ion-item>
+    <button ion-button full (click) = "createNewChat()">
+        Create
+    </button>
+</ion-content>

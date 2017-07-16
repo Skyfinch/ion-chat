@@ -1,0 +1,10 @@
+<ion-content>
+    <ion-list>
+       <ion-item class="text" *ngFor="let chat of chats | async" (click) = "goToChat(chat.$key)">
+         {{chat.title}}
+      </ion-item>
+    </ion-list>
+    <button ion-button full (click) = "createNewChat()">
+        Create new chat
+    </button>
+</ion-content>

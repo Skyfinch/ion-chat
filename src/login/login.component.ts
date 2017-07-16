@@ -13,7 +13,7 @@ import { Home } from '../home/home.component';
 export class Login {
  
   constructor(private afAuth: AngularFireAuth, private nav : Nav) {
-   }
+  }
  
    signInWithFacebook() {
     this.afAuth.auth

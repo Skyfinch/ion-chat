@@ -5,6 +5,8 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { Chat } from '../chat/chat.component';
+import { ChatsList } from '../chat/chats-list.component';
+import { CreateChat } from '../chat/create-chat.component';
 import { UserProfile } from '../user/user-profile.component';
 import { Login } from '../login/login.component';
 import { Home } from '../home/home.component';
@@ -17,6 +19,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { UserService } from '../services/user.service';
+import { ChatService } from '../services/chat.service';
 
 import {env} from '../env/env'
 
@@ -24,6 +27,8 @@ import {env} from '../env/env'
   declarations: [
     MyApp,
     Chat,
+    ChatsList,
+    CreateChat,
     UserProfile,
     Login,
     Home
@@ -39,11 +44,14 @@ import {env} from '../env/env'
   entryComponents: [
     MyApp,
     Chat,
+    ChatsList,
+    CreateChat,
     UserProfile,
     Login,
     Home
   ],
   providers: [
+    ChatService,
     StatusBar,
     SplashScreen,
     UserService,
