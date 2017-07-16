@@ -24,4 +24,12 @@ export class Login {
         });
     }
 
+     signInWithGoogle() {
+    this.afAuth.auth
+      .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      .then(res => {
+          console.log(res);
+           this.nav.setRoot( Home, {index: "0"});
+        });
+    }
 }

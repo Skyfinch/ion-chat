@@ -14,3 +14,47 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+ion-row {
+    display: flex;
+    justify-content: center;
+};
+
+$social-list: (
+    facebook #4b70ab,
+    linkedin #0087be,
+    google #3F85F4,
+    twitter #3B94D9,
+    yahoo #500095,
+    openid #F78C40,
+    google #DD4B39,
+    dropbox #007DE1,
+    github #333,
+    bitbucket #205081,
+    soundcloud #FF5500,
+    spotify #2EBD59,
+    microsoft #00A4EF,
+    flickr #FF0084
+);
+
+@each $name, $color in $social-list {
+
+    .social-login-button-#{$name} {
+		background-color: $color;
+        border: 1px solid darken($color, 10%);
+		
+		ion-icon {
+			border-right: 1px solid darken($color, 10%);
+
+			&:after {
+				border-right: 1px solid lighten($color, 10%);
+			}
+		}
+
+		&:hover {
+			background-color: darken($color, 5%);
+		}
+
+	}
+
+}

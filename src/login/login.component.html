@@ -1,3 +1,10 @@
 <ion-content padding>
-	<button ion-button outline (click)="signInWithFacebook()">Login</button>  
+	<button class="social-login-button-facebook" ion-button icon-start (click)="signInWithFacebook()">
+		<ion-icon name="logo-facebook"></ion-icon>
+		connect with facebook
+	</button>
+	<button class="social-login-button-google" ion-button icon-start (click)="signInWithGoogle()">
+		<ion-icon name="logo-google"></ion-icon>
+		connect with google
+	</button>  
 </ion-content>

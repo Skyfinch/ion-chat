@@ -10,6 +10,6 @@ exports.createUser = functions.auth.user().onCreate(event => {
         createdAt: event.data.metadata.createdAt || null,
         email: event.data.email || null,
         photoUrl: event.data.photoURL || null,
-        username: event.data.displayName || null
+        displayName: event.data.displayName || null
     });
 });

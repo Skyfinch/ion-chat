@@ -1,18 +1,27 @@
 import { Component } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+
+import { UserService } from '../services/user.service';
+
 
 @Component({
   templateUrl: 'user-profile.component.html'
 })
 export class UserProfile {
 
-  user: Observable<firebase.User>;
+  public userProfile : {};
 
-  constructor(private afAuth: AngularFireAuth) {
-    this.user = afAuth.authState;
+  constructor(private afAuth: AngularFireAuth, private userService: UserService) {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+          this.userService.getUser(firebase.auth().currentUser.uid).then((snapshot) => {
+            this.userProfile = snapshot.val();
+            console.log(this.userProfile);
+          });
+      }
+    });
   }
 
   logout() {

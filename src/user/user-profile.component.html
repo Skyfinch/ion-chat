@@ -1,4 +1,23 @@
 <ion-content padding>
-    bonjour {{ (user | async)?.uid }}
-    <button ion-button outline (click)="logout()">Logout</button> 
+    <ion-card>
+        <ion-card-header>
+            Profile
+        </ion-card-header>
+
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-img width="80" height="80" src="{{userProfile?.photoUrl}}"></ion-img>
+                </ion-row>
+                <ion-row>
+                    {{userProfile?.displayName}}
+                </ion-row>
+                <ion-row>
+                    
+            <button ion-button outline (click)="logout()">Logout</button>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+
+    </ion-card> 
 </ion-content>
