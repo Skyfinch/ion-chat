@@ -9,17 +9,28 @@ import * as firebase from 'firebase/app';
   templateUrl: 'login.component.html',
 })
 export class Login {
- 
-  constructor(private afAuth: AngularFireAuth, private nav : Nav) {
-  }
- 
-   signInWithFacebook() {
-    this.afAuth.auth
-      .signInWithPopup(new firebase.auth.FacebookAuthProvider());
-    }
 
-     signInWithGoogle() {
+  email: string;
+  password: string;
+  message: string;
+
+  constructor(private afAuth: AngularFireAuth, private nav: Nav) {
+  }
+
+  signInWithFacebook() {
+    this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
+  }
+
+  signInWithGoogle() {
+    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  }
+
+  signInWithEmailAndPassword() {
+    console.log("Trying to login using : " + this.email);
     this.afAuth.auth
-      .signInWithPopup(new firebase.auth.GoogleAuthProvider());
-    }
+      .signInWithEmailAndPassword(this.email, this.password)
+      .catch(
+        error => {this.message = "No account found";}
+      );
+  }
 }
