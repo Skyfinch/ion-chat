@@ -11,11 +11,11 @@
     <ion-item-group>
         <ion-item-divider color="light">Credentials</ion-item-divider>
         <ion-item>
-            <ion-icon name="mail" item-start></ion-icon>
+            <ion-icon name="mail" item-start color="dark"></ion-icon>
             <ion-input type="text" placeholder="Email">{{email}}</ion-input>
         </ion-item>
         <ion-item>
-            <ion-icon name="lock" item-start></ion-icon>
+            <ion-icon name="lock" item-start color="dark"></ion-icon>
             <ion-input type="password" placeholder="Password">{{password}}</ion-input>
         </ion-item>
         <ion-item *ngIf="!!password && password.length <= 6">
@@ -23,7 +23,7 @@
             password must be at least 6 long
         </ion-item>
         <ion-item>
-            <ion-icon name="mail" item-start></ion-icon>
+            <ion-icon name="mail" item-start color="dark"></ion-icon>
             <ion-input type="password" placeholder="Confirm pwd">{{confirm_password}}</ion-input>
         </ion-item>
         <ion-item *ngIf="!!password && ((password === confirm_password) == false)">
@@ -32,7 +32,7 @@
         </ion-item>
         <ion-item-divider color="light">Basic information</ion-item-divider>
         <ion-item>
-            <ion-icon name="contact" item-start></ion-icon>
+            <ion-icon name="contact" item-start color="dark"></ion-icon>
             <ion-input type="text" placeholder="Full name or pseudo">{{display_name}}</ion-input>
         </ion-item>
         <ion-item *ngIf="!!message">
@@ -40,7 +40,7 @@
             {{message}}
         </ion-item>
     </ion-item-group>
-    <ion-grid *ngIf="(password === confirm_password) && !!email && !!password && !!display_name">
+    <ion-grid>
         <ion-row></ion-row>
         <ion-row>
             <ion-col col-3>
