@@ -1,10 +1,46 @@
-<ion-content padding>
-	<button class="social-login-button-facebook" ion-button icon-start (click)="signInWithFacebook()">
-		<ion-icon name="logo-facebook"></ion-icon>
-		connect with facebook
-	</button>
-	<button class="social-login-button-google" ion-button icon-start (click)="signInWithGoogle()">
-		<ion-icon name="logo-google"></ion-icon>
-		connect with google
-	</button>  
+<ion-content style="background-color:#F9FBE7">
+  <ion-grid style="height: 100%;justify-content: center;">
+    <ion-row>
+      <ion-col col-9>
+        <button class="social-login-button-facebook" ion-button icon-start full round (click)="signInWithFacebook()">
+          <ion-icon name="logo-facebook"></ion-icon>
+          connect with facebook
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-9>
+        <button class="social-login-button-google" ion-button icon-start full round (click)="signInWithGoogle()">
+          <ion-icon name="logo-google"></ion-icon>
+          connect with google
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <ion-card>
+          <img src="http://www.telegraph.co.uk/content/dam/Travel/leadAssets/28/20/komodo-beach_2820191a-large.jpg" />
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col col-10>
+                  <ion-input type="text" placeholder="Username"></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-10>
+                  <ion-input type="password" placeholder="Password"></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-8>
+                  <button ion-button full round color="dark">Sign in</button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
