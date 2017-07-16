@@ -4,9 +4,6 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 
-import { Chat } from '../chat/chat.component';
-import { ChatsList } from '../chat/chats-list.component';
-import { CreateChat } from '../chat/create-chat.component';
 import { UserProfile } from '../user/user-profile.component';
 import { Login } from '../login/login.component';
 
@@ -18,16 +15,14 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { UserService } from '../services/user.service';
-import { ChatService } from '../services/chat.service';
+
+import { ChatModule } from '../chat/chat.module'
 
 import {env} from '../env/env'
 
 @NgModule({
   declarations: [
     MyApp,
-    Chat,
-    ChatsList,
-    CreateChat,
     UserProfile,
     Login
   ],
@@ -36,19 +31,16 @@ import {env} from '../env/env'
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(env.firebase),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ChatModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    Chat,
-    ChatsList,
-    CreateChat,
     UserProfile,
     Login
   ],
   providers: [
-    ChatService,
     StatusBar,
     SplashScreen,
     UserService,

@@ -12,11 +12,17 @@
 
 </ion-header>
 <ion-content padding>
-	<div *ngFor="let message of messages | async">
-		{{message.content}}
-	</div>
-
-	<input type="text" [(ngModel)]="inputMessageContent" placeholder="Your message..">
-
-	<button (click)="sendMessage()">Send message</button>
+  <div *ngFor="let message of messages | async"
+        class="msg"
+        [class.other]=" message.sender !== userUid "
+        [class.self]=" message.sender === userUid ">
+      {{message.content}}
+  </div>
+  <ion-item>
+    <ion-input type="text" [(ngModel)]="inputMessageContent" placeholder="Your message.."></ion-input>
+    <button ion-button item-right (click)="sendMessage()">
+      <ion-icon icon-only name="send">
+      </ion-icon>
+    </button>
+  </ion-item>
 </ion-content>

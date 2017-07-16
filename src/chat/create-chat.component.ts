@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-
 import { Nav } from 'ionic-angular';
 
 import { ChatService } from '../services/chat.service';

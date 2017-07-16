@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Nav } from 'ionic-angular';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
@@ -14,7 +13,7 @@ export class Login {
   password: string;
   message: string;
 
-  constructor(private afAuth: AngularFireAuth, private nav: Nav) {
+  constructor(private afAuth: AngularFireAuth) {
   }
 
   signInWithFacebook() {
