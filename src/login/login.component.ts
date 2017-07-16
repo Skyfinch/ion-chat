@@ -11,25 +11,42 @@ import { Home } from '../home/home.component';
   templateUrl: 'login.component.html',
 })
 export class Login {
- 
-  constructor(private afAuth: AngularFireAuth, private nav : Nav) {
+
+  email: string;
+  password: string;
+  message: string;
+
+  constructor(private afAuth: AngularFireAuth, private nav: Nav) {
   }
- 
-   signInWithFacebook() {
+
+  signInWithFacebook() {
     this.afAuth.auth
       .signInWithPopup(new firebase.auth.FacebookAuthProvider())
       .then(res => {
-          console.log(res);
-           this.nav.setRoot( Home, {index: "0"});
-        });
-    }
+        console.log(res);
+        this.nav.setRoot(Home, { index: "0" });
+      });
+  }
 
-     signInWithGoogle() {
+  signInWithGoogle() {
     this.afAuth.auth
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then(res => {
-          console.log(res);
-           this.nav.setRoot( Home, {index: "0"});
-        });
-    }
+        console.log(res);
+        this.nav.setRoot(Home, { index: "0" });
+      });
+  }
+
+  signInWithEmailAndPassword() {
+    console.log("Trying to login using : " + this.email);
+    this.afAuth.auth
+      .signInWithEmailAndPassword(this.email, this.password)
+      .then(res => {
+        console.log(res);
+        this.nav.setRoot(Home, { index: "0" });
+      })
+      .catch(
+        error => {this.message = "No account found";}
+      );
+  }
 }
