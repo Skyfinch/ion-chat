@@ -1,0 +1,22 @@
+chat {
+
+  $selfBgColor: #387ef5;
+  $otherBgColor: #ccc;
+
+  .msg {
+    margin: 2% 2% 2% 2%;
+    padding: 2% 5% 2% 5%;
+  }
+
+  .msg.self {
+      border-radius: 10px 0 10px 10px;
+      background-color: $selfBgColor;
+      text-align: right;
+  }
+
+  .msg.other {
+      border-radius: 0 10px 10px 10px;
+      background-color: $otherBgColor;
+      text-align: left;
+  }
+}

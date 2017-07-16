@@ -11,7 +11,7 @@ import { Message } from '../models/Message';
 
 
 @Component({
-  selector: 'ar-chat',
+  selector: 'chat',
   templateUrl: 'chat.component.html'
 })
 export class Chat {
@@ -39,8 +39,10 @@ export class Chat {
     }
     
     sendMessage() {
-      this.chatService.createMessage(this.chatUid, new Message(this.inputMessageContent, this.userUid));
-      this.inputMessageContent = "";
+        if(!!this.inputMessageContent){
+            this.chatService.createMessage(this.chatUid, new Message(this.inputMessageContent, this.userUid));
+            this.inputMessageContent = "";
+        }
     }
 
 }

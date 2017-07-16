@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 
-import { Events, Nav} from 'ionic-angular';
+import { Nav } from 'ionic-angular';
 
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { FirebaseListObservable } from 'angularfire2/database';
 
-import { UserService } from '../services/user.service';
 import { ChatService } from '../services/chat.service';
 
 import { CreateChat } from './create-chat.component'
@@ -19,7 +18,7 @@ export class ChatsList {
 
   public chats : FirebaseListObservable<any[]>
 
-  constructor(private chatService: ChatService, private events: Events, private nav : Nav, private userService: UserService){
+  constructor(private chatService: ChatService, private nav : Nav){
       this.chats = this.chatService.getChats();
   }
 
