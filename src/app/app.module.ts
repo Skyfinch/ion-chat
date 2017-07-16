@@ -9,6 +9,8 @@ import { ChatsList } from '../chat/chats-list.component';
 import { CreateChat } from '../chat/create-chat.component';
 import { UserProfile } from '../user/user-profile.component';
 import { Login } from '../login/login.component';
+import { Signup } from '../signup/signup.component';
+import { ForgotPwd } from '../forgotpwd/forgotpwd.component';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -29,7 +31,9 @@ import {env} from '../env/env'
     ChatsList,
     CreateChat,
     UserProfile,
-    Login
+    Login,
+    Signup,
+    ForgotPwd
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,9 @@ import {env} from '../env/env'
     ChatsList,
     CreateChat,
     UserProfile,
-    Login
+    Login,
+    Signup,
+    ForgotPwd
   ],
   providers: [
     ChatService,

@@ -4,6 +4,8 @@ import { Nav } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
+import { Signup } from '../signup/signup.component';
+
 @Component({
   selector: 'login',
   templateUrl: 'login.component.html',
@@ -15,6 +17,9 @@ export class Login {
   message: string;
 
   constructor(private afAuth: AngularFireAuth, private nav: Nav) {
+    this.email = "";
+    this.password = "";
+    this.message = "";
   }
 
   signInWithFacebook() {
@@ -32,5 +37,13 @@ export class Login {
       .catch(
         error => {this.message = "No account found";}
       );
+  }
+
+  forgotPassword(){
+    
+  }
+
+  signUp(){
+    this.nav.push(Signup);
   }
 }

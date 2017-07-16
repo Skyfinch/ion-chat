@@ -1,0 +1,51 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button icon-only menuToggle>
+              <ion-icon name="menu"></ion-icon>
+            </button>
+        <ion-title>Sign Up</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <img src="http://www.telegraph.co.uk/content/dam/Travel/leadAssets/28/20/komodo-beach_2820191a-large.jpg" />
+    <ion-item-group>
+        <ion-item-divider color="light">Credentials</ion-item-divider>
+        <ion-item>
+            <ion-icon name="mail" item-start></ion-icon>
+            <ion-input type="text" placeholder="Email">{{email}}</ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="lock" item-start></ion-icon>
+            <ion-input type="password" placeholder="Password">{{password}}</ion-input>
+        </ion-item>
+        <ion-item *ngIf="!!password && password.length <= 6">
+            <ion-icon name="warning" item-start color="danger"></ion-icon>
+            password must be at least 6 long
+        </ion-item>
+        <ion-item>
+            <ion-icon name="mail" item-start></ion-icon>
+            <ion-input type="password" placeholder="Confirm pwd">{{confirm_password}}</ion-input>
+        </ion-item>
+        <ion-item *ngIf="!!password && ((password === confirm_password) == false)">
+            <ion-icon name="warning" item-start color="red"></ion-icon>
+            passwords don't match !
+        </ion-item>
+        <ion-item-divider color="light">Basic information</ion-item-divider>
+        <ion-item>
+            <ion-icon name="contact" item-start></ion-icon>
+            <ion-input type="text" placeholder="Full name or pseudo">{{display_name}}</ion-input>
+        </ion-item>
+        <ion-item *ngIf="!!message">
+            <ion-icon name="warning" item-start color="danger"></ion-icon>
+            {{message}}
+        </ion-item>
+    </ion-item-group>
+    <ion-grid *ngIf="(password === confirm_password) && !!email && !!password && !!display_name">
+        <ion-row></ion-row>
+        <ion-row>
+            <ion-col col-3>
+                <button ion-button full round color="dark" (click)="signUp()">Sign up</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

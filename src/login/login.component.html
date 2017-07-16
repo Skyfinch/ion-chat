@@ -34,10 +34,10 @@
               </ion-row>
               <ion-row>
                 <ion-col col-8>
-                  <button ion-button full round color="dark" (click)="signInWithEmailAndPassword()">Sign in</button>
+                  <button ion-button full small round color="dark" (click)="signInWithEmailAndPassword()">Sign in</button>
                 </ion-col>
               </ion-row>
-              <ion-row>
+              <ion-row *ngIf="!!message">
                 <ion-col col-8>
                   <ion-item>{{message}}</ion-item>
                 </ion-col>
@@ -45,6 +45,12 @@
             </ion-grid>
           </ion-card-content>
         </ion-card>
+      </ion-col>
+      <ion-col col-6>
+          <button ion-button clear full small round color="dark" (click)="forgotPassword()">Forgot password ?</button>
+      </ion-col>
+      <ion-col col-6>
+          <button ion-button clear full small round color="dark" (click)="signUp()">No account ? Sign up !</button>
       </ion-col>
     </ion-row>
   </ion-grid>
