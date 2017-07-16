@@ -18,12 +18,14 @@ export class Chat {
 
     chatUid : string;
     userUid : string;
+    chat : FirebaseObjectObservable<Chat>
     messages: FirebaseListObservable<Message[]>;
 
     inputMessageContent : string;
 
     constructor(public chatService : ChatService, events : Events, public nav : Nav, public navParams: NavParams){
       this.chatUid = this.navParams.get('chatUid');
+      this.chat = this.chatService.getChat(this.chatUid);
       this.messages = this.chatService.getMessages(this.chatUid);
       events.subscribe('switch-to-chat', (chatUid) => {
         this.chatUid = chatUid

@@ -1,6 +1,17 @@
-<ion-content padding>
-	<h1>Real Time Chat</h1>
+<ion-header>
 
+  <ion-navbar>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-title>
+      {{(chat | async)?.title}}
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
 	<div *ngFor="let message of messages | async">
 		{{message.content}}
 	</div>

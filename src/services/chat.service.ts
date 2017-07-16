@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 
 import { Chat } from '../models/Chat'
 import { Message } from '../models/Message'
@@ -14,6 +14,10 @@ export class ChatService {
 
     constructor(private afDb : AngularFireDatabase) {
         this.chats = this.afDb.list("chats");
+    }
+
+    getChat(chatUid : string){
+        return this.afDb.object("chats/" + chatUid);
     }
 
     getChats(){

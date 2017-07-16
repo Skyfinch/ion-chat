@@ -10,6 +10,8 @@ import { ChatService } from '../services/chat.service';
 import { CreateChat } from './create-chat.component'
 import { Chat } from './chat.component'
 
+import { UserProfile } from '../user/user-profile.component';
+
 @Component({
   templateUrl: 'chats-list.component.html'
 })
@@ -26,7 +28,11 @@ export class ChatsList {
   }
 
   goToChat(chatUid : string){
-    this.events.publish('switch-to-chat', chatUid);
+    this.nav.push(Chat, {chatUid: chatUid});
+  }
+
+  goToUserProfile() {
+    this.nav.push(UserProfile);
   }
 
 }
