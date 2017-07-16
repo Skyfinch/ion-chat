@@ -16,8 +16,6 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
-import { Auth } from '../services/auth.service';
-
 import {env} from '../env/env'
 
 @NgModule({
@@ -44,7 +42,6 @@ import {env} from '../env/env'
     Home
   ],
   providers: [
-    Auth,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
