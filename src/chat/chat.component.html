@@ -5,7 +5,7 @@
 		{{message.content}}
 	</div>
 
-	<input type="text" #message placeholder="Your message..">
+	<input type="text" [(ngModel)]="inputMessageContent" placeholder="Your message..">
 
-	<button (click)="newMessage(message.value)">Send message</button>
+	<button (click)="sendMessage()">Send message</button>
 </ion-content>

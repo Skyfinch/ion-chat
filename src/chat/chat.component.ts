@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Nav, NavParams } from 'ionic-angular';
+import { Events, Nav, NavParams } from 'ionic-angular';
 
 import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
@@ -20,23 +20,25 @@ export class Chat {
     userUid : string;
     messages: FirebaseListObservable<Message[]>;
 
-    constructor(public chatService : ChatService, public nav : Nav, public navParams: NavParams){
-    }
-      
-    ngOnInit() {
+    inputMessageContent : string;
+
+    constructor(public chatService : ChatService, events : Events, public nav : Nav, public navParams: NavParams){
       this.chatUid = this.navParams.get('chatUid');
+      this.messages = this.chatService.getMessages(this.chatUid);
+      events.subscribe('switch-to-chat', (chatUid) => {
+        this.chatUid = chatUid
+        this.messages = this.chatService.getMessages(this.chatUid);
+      });
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
           this.userUid = firebase.auth().currentUser.uid;
         }
       });
-      this.messages = this.chatService.getMessages(this.chatUid);
-      console.log(this.chatUid);
-      console.log(this.messages);
     }
     
-    newMessage(content : string) {
-      this.chatService.createMessage(this.chatUid, new Message(content, this.userUid));
+    sendMessage() {
+      this.chatService.createMessage(this.chatUid, new Message(this.inputMessageContent, this.userUid));
+      this.inputMessageContent = "";
     }
 
 }

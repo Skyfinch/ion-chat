@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Nav } from 'ionic-angular';
+import { Events, Nav} from 'ionic-angular';
 
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
@@ -17,7 +17,7 @@ export class ChatsList {
 
   public chats : FirebaseListObservable<any[]>
 
-  constructor(private chatService: ChatService, private nav : Nav, private userService: UserService){
+  constructor(private chatService: ChatService, private events: Events, private nav : Nav, private userService: UserService){
       this.chats = this.chatService.getChats();
   }
 
@@ -26,7 +26,7 @@ export class ChatsList {
   }
 
   goToChat(chatUid : string){
-      this.nav.push(Chat, {chatUid : chatUid})
+    this.events.publish('switch-to-chat', chatUid);
   }
 
 }
