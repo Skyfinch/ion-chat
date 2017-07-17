@@ -15,10 +15,12 @@ import { ForgotPassword } from './forgot-password/forgot-password.component';
     IonicModule
   ],
   entryComponents: [
-    Login
+    Login,
+    SignUp,
+    ForgotPassword
   ],
   exports: [
     Login
-  ],
+  ]
 })
 export class AuthenticationModule {}
