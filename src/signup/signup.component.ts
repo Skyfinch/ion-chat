@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Nav } from 'ionic-angular';
+import { LoadingController, ToastController } from 'ionic-angular';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
@@ -18,7 +18,7 @@ export class Signup {
 
   message: string;
 
-  constructor(private afAuth: AngularFireAuth, private nav: Nav) {
+  constructor(private afAuth: AngularFireAuth, public loadingCtrl: LoadingController, private toastCtrl: ToastController) {
     this.email = "";
     this.password = "";
     this.confirm_password = "";
@@ -27,23 +27,37 @@ export class Signup {
     this.message = "";
   }
 
-  signUp(){
-    if(this.password == this.confirm_password){
+  signUp() {
+    if (this.password == this.confirm_password) {
+      let loader = this.loadingCtrl.create({
+        content: "Please wait..."
+      });
+      loader.present();
       this.afAuth.auth
         .createUserWithEmailAndPassword(this.email, this.password)
-        .then(
-          () => {
-            console.log("User successfully created !");
-            this.nav.pop();
+        .then(() => {
+          console.log("User successfully created !");
+          loader.dismiss();
+          this.presentToast();
         })
-        .catch(
-          error => { 
-            console.log("Could not create user : " + error);
-            this.message = "Cannot create user.";
-          });
+        .catch(error => {
+          console.log("Could not create user : " + error);
+          loader.dismiss();
+          this.message = "Cannot create user.";
+        })
     }
-    else{
+    else {
       this.message = "The 2 pwd must be identical !";
     }
+  }
+
+  presentToast() {
+    let toast = this.toastCtrl.create({
+      message: 'Welcome !',
+      position: 'bottom',
+      duration: 3000
+    });
+
+    toast.present();
   }
 }

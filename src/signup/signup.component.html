@@ -8,44 +8,31 @@
 </ion-header>
 <ion-content>
     <img src="http://www.telegraph.co.uk/content/dam/Travel/leadAssets/28/20/komodo-beach_2820191a-large.jpg" />
-    <ion-item-group>
+    <form (ngSubmit)="signUp()">
         <ion-item-divider color="light">Credentials</ion-item-divider>
         <ion-item>
             <ion-icon name="mail" item-start color="dark"></ion-icon>
-            <ion-input type="text" placeholder="Email">{{email}}</ion-input>
+            <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="email"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-icon name="lock" item-start color="dark"></ion-icon>
-            <ion-input type="password" placeholder="Password">{{password}}</ion-input>
-        </ion-item>
-        <ion-item *ngIf="!!password && password.length <= 6">
-            <ion-icon name="warning" item-start color="danger"></ion-icon>
-            password must be at least 6 long
+            <ion-icon *ngIf="password.length >= 6" name="lock" item-start color="dark"></ion-icon>
+            <ion-icon *ngIf="password.length < 6" name="unlock" item-start color="danger"></ion-icon>
+            <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="password"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-icon name="mail" item-start color="dark"></ion-icon>
-            <ion-input type="password" placeholder="Confirm pwd">{{confirm_password}}</ion-input>
-        </ion-item>
-        <ion-item *ngIf="!!password && ((password === confirm_password) == false)">
-            <ion-icon name="warning" item-start color="red"></ion-icon>
-            passwords don't match !
+            <ion-icon *ngIf="!!confirm_password && ((password === confirm_password) == true)" name="lock" item-start color="dark"></ion-icon>
+            <ion-icon *ngIf="(!!confirm_password == false) || ((password === confirm_password) == false)" name="unlock" item-start color="danger"></ion-icon>
+            <ion-input type="password" placeholder="Confirm pwd" name="confirm_password" [(ngModel)]="confirm_password"></ion-input>
         </ion-item>
         <ion-item-divider color="light">Basic information</ion-item-divider>
         <ion-item>
             <ion-icon name="contact" item-start color="dark"></ion-icon>
-            <ion-input type="text" placeholder="Full name or pseudo">{{display_name}}</ion-input>
+            <ion-input type="text" placeholder="Full name or pseudo" name="display_name" [(ngModel)]="display_name"></ion-input>
         </ion-item>
         <ion-item *ngIf="!!message">
             <ion-icon name="warning" item-start color="danger"></ion-icon>
             {{message}}
         </ion-item>
-    </ion-item-group>
-    <ion-grid>
-        <ion-row></ion-row>
-        <ion-row>
-            <ion-col col-3>
-                <button ion-button full round color="dark" (click)="signUp()">Sign up</button>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+        <button ion-button round color="dark" type="submit">Sign up</button>
+    </form>
 </ion-content>
