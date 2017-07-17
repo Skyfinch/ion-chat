@@ -1,4 +1,19 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-title>
+      Create chat
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
 <ion-content> 
+    <search-user>
+    </search-user>
     <ion-item>
         <ion-label color="primary" stacked>Chat title</ion-label>
         <ion-input required [(ngModel)]="chat.title" type="text" placeholder="Title"></ion-input>
