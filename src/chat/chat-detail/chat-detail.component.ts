@@ -7,8 +7,8 @@ import * as firebase from 'firebase/app';
 
 import { ChatService } from '../chat.service';
 
-import { Chat } from '../Chat';
-import { Message } from '../Message';
+import { Chat } from '../chat';
+import { Message } from '../message';
 
 
 @Component({

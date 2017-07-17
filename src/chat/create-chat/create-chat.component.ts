@@ -4,7 +4,7 @@ import { Nav } from 'ionic-angular';
 
 import { ChatService } from '../chat.service';
 
-import { Chat } from '../Chat'
+import { Chat } from '../chat'
 
 @Component({
   templateUrl: 'create-chat.component.html'
