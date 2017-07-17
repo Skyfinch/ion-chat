@@ -5,6 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
 import { SignUp } from '../sign-up/sign-up.component';
+import { ForgotPassword } from '../forgot-password/forgot-password.component';
 
 @Component({
   selector: 'login',
@@ -40,7 +41,7 @@ export class Login {
   }
 
   forgotPassword(){
-    
+    this.nav.push(ForgotPassword);
   }
 
   signUp(){

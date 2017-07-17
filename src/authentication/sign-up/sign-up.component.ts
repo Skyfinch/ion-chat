@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { LoadingController, ToastController } from 'ionic-angular';
 
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'sign-up',
@@ -55,7 +54,7 @@ export class SignUp {
     let toast = this.toastCtrl.create({
       message: 'Welcome !',
       position: 'bottom',
-      duration: 3000
+      duration: 5000
     });
 
     toast.present();
