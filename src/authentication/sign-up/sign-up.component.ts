@@ -24,6 +24,8 @@ export class SignUp {
 
     this.display_name = "";
     this.message = "";
+
+    this.presentTipsToast();
   }
 
   signUp() {
@@ -37,7 +39,7 @@ export class SignUp {
         .then(() => {
           console.log("User successfully created !");
           loader.dismiss();
-          this.presentToast();
+          this.presentWelcomeToast();
         })
         .catch(error => {
           console.log("Could not create user : " + error);
@@ -50,11 +52,26 @@ export class SignUp {
     }
   }
 
-  presentToast() {
+  presentWelcomeToast() {
     let toast = this.toastCtrl.create({
       message: 'Welcome !',
       position: 'bottom',
       duration: 5000
+    });
+
+    toast.present();
+  }
+
+  presentTipsToast() {
+    let toast = this.toastCtrl.create({
+      message: 'Tips : You can also use google or facebook to sign up ! Just get back to login page and choose your favourite social network.',
+      position: 'middle',
+      showCloseButton: true,
+      closeButtonText: 'Ok'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
     });
 
     toast.present();

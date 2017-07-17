@@ -4,7 +4,7 @@
       <ion-col col-9>
         <button class="social-login-button-facebook" ion-button icon-start full round (click)="signInWithFacebook()">
           <ion-icon name="logo-facebook"></ion-icon>
-          connect with facebook
+          Connect with facebook
         </button>
       </ion-col>
     </ion-row>
@@ -12,29 +12,35 @@
       <ion-col col-9>
         <button class="social-login-button-google" ion-button icon-start full round (click)="signInWithGoogle()">
           <ion-icon name="logo-google"></ion-icon>
-          connect with google
+          Connect with google
         </button>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-12>
         <ion-card>
-          <img src="http://www.telegraph.co.uk/content/dam/Travel/leadAssets/28/20/komodo-beach_2820191a-large.jpg" />
+          <img src="assets/img/komodo.jpg"/>
           <ion-card-content>
             <ion-grid>
               <ion-row>
                 <ion-col col-10>
-                  <ion-input type="text" placeholder="Username" [(ngModel)]="email"></ion-input>
+                  <ion-item>
+                    <ion-icon name="mail" item-start color="dark"></ion-icon>
+                    <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="email"></ion-input>
+                  </ion-item>
                 </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col col-10>
-                  <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
+                  <ion-item>
+                    <ion-icon name="lock" item-start color="dark"></ion-icon>
+                    <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
+                  </ion-item>
                 </ion-col>
               </ion-row>
               <ion-row>
-                <ion-col col-8>
-                  <button ion-button full small round color="dark" (click)="signInWithEmailAndPassword()">Sign in</button>
+                <ion-col col-12>
+                  <button ion-button full round color="dark" (click)="signInWithEmailAndPassword()">Sign in</button>
                 </ion-col>
               </ion-row>
               <ion-row *ngIf="!!message">
@@ -47,10 +53,10 @@
         </ion-card>
       </ion-col>
       <ion-col col-6>
-          <button ion-button clear full small round color="dark" (click)="forgotPassword()">Forgot password ?</button>
+        <button ion-button clear full small round color="dark" (click)="forgotPassword()">Forgot password ?</button>
       </ion-col>
       <ion-col col-6>
-          <button ion-button clear full small round color="dark" (click)="signUp()">No account ? Sign up !</button>
+        <button ion-button clear full small round color="dark" (click)="signUp()">No account ? Sign up !</button>
       </ion-col>
     </ion-row>
   </ion-grid>
