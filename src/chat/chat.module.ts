@@ -1,30 +1,30 @@
 import { NgModule } from '@angular/core';
 import { IonicModule } from 'ionic-angular';
 
-import { Chat } from '../chat/chat.component';
-import { ChatsList } from '../chat/chats-list.component';
-import { CreateChat } from '../chat/create-chat.component';
+import { CreateChat } from './create-chat/create-chat.component';
+import { ChatDetail } from './chat-detail/chat-detail.component';
+import { ChatsList } from './chats-list/chats-list.component';
+import { UserModule } from '../user/user.module';
 
-import { ChatService } from '../services/chat.service';
+import { ChatService } from './chat.service';
 
 @NgModule({
     declarations: [
-        Chat,
+        ChatDetail,
         ChatsList,
         CreateChat
     ],
     imports: [
-        IonicModule.forRoot(ChatsList),
+        IonicModule,
+        UserModule
     ],
     exports: [
-        Chat,
-        ChatsList,
-        CreateChat
+        ChatsList
     ],
     entryComponents: [
-        Chat,
+        ChatDetail,
         ChatsList,
-        CreateChat
+        CreateChat,
     ],
     providers:[
         ChatService

@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 
 import { Nav } from 'ionic-angular';
 
-import { ChatService } from '../services/chat.service';
+import { ChatService } from '../chat.service';
 
-import { Chat } from '../models/Chat'
+import { Chat } from '../Chat'
 
 @Component({
   templateUrl: 'create-chat.component.html'

@@ -4,11 +4,6 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 
-import { UserProfile } from '../user/user-profile.component';
-import { Login } from '../login/login.component';
-import { Signup } from '../signup/signup.component';
-import { ForgotPwd } from '../forgotpwd/forgotpwd.component';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -16,40 +11,31 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
-import { UserService } from '../services/user.service';
-
+import { AuthenticationModule } from '../authentication/authentication.module'
 import { ChatModule } from '../chat/chat.module'
 
 import {env} from '../env/env'
 
 @NgModule({
   declarations: [
-    MyApp,
-    UserProfile,
-    Login,
-    Signup,
-    ForgotPwd
+    MyApp
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(env.firebase),
-    AngularFireDatabaseModule,
     AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    AuthenticationModule,
     ChatModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    UserProfile,
-    Login,
-    Signup,
-    ForgotPwd
+    MyApp
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    UserService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

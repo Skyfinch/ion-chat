@@ -5,11 +5,11 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
 @Component({
-  selector: 'forgotpwd',
-  templateUrl: 'forgotpwd.component.html',
+  selector: 'forgot-password',
+  templateUrl: 'forgot-password.component.html',
 })
 
-export class ForgotPwd {
+export class ForgotPassword {
 
   email: string;
   message: string;

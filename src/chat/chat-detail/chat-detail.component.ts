@@ -5,16 +5,17 @@ import { Events, Nav, NavParams } from 'ionic-angular';
 import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
 
-import { ChatService } from '../services/chat.service';
+import { ChatService } from '../chat.service';
 
-import { Message } from '../models/Message';
+import { Chat } from '../Chat';
+import { Message } from '../Message';
 
 
 @Component({
-  selector: 'chat',
-  templateUrl: 'chat.component.html'
+  selector: 'chat-detail',
+  templateUrl: 'chat-detail.component.html'
 })
-export class Chat {
+export class ChatDetail {
 
     chatUid : string;
     userUid : string;

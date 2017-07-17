@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
-import { Chat } from '../models/Chat'
-import { Message } from '../models/Message'
+import { Chat } from './Chat'
+import { Message } from './Message'
 
 @Injectable()
 export class ChatService {

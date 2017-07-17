@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
-import { UserService } from '../services/user.service';
+import { UserService } from '../user.service';
 
 
 @Component({

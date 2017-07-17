@@ -4,7 +4,7 @@ import { Nav } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
-import { Signup } from '../signup/signup.component';
+import { SignUp } from '../sign-up/sign-up.component';
 
 @Component({
   selector: 'login',
@@ -44,6 +44,6 @@ export class Login {
   }
 
   signUp(){
-    this.nav.push(Signup);
+    this.nav.push(SignUp);
   }
 }

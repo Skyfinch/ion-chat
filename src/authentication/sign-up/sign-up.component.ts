@@ -5,11 +5,11 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
 @Component({
-  selector: 'signup',
-  templateUrl: 'signup.component.html',
+  selector: 'sign-up',
+  templateUrl: 'sign-up.component.html',
 })
 
-export class Signup {
+export class SignUp {
 
   email: string;
   password: string;

@@ -4,12 +4,11 @@ import { Nav } from 'ionic-angular';
 
 import { FirebaseListObservable } from 'angularfire2/database';
 
-import { ChatService } from '../services/chat.service';
+import { ChatService } from '../chat.service';
+import { CreateChat } from '../create-chat/create-chat.component'
+import { ChatDetail } from '../chat-detail/chat-detail.component'
 
-import { CreateChat } from './create-chat.component'
-import { Chat } from './chat.component'
-
-import { UserProfile } from '../user/user-profile.component';
+import { UserProfile } from '../../user/user-profile/user-profile.component'
 
 @Component({
   templateUrl: 'chats-list.component.html'
@@ -27,7 +26,7 @@ export class ChatsList {
   }
 
   goToChat(chatUid : string){
-    this.nav.push(Chat, {chatUid: chatUid});
+    this.nav.push(ChatDetail, {chatUid: chatUid});
   }
 
   goToUserProfile() {
