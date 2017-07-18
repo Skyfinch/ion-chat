@@ -12,7 +12,7 @@
 
 </ion-header>
 <ion-content> 
-    <search-user>
+    <search-user (clickOnUser) = "onUserClicked($event)">
     </search-user>
     <ion-item>
         <ion-label color="primary" stacked>Chat title</ion-label>

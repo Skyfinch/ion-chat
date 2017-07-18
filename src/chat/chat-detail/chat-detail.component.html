@@ -6,7 +6,7 @@
     </button>
 
     <ion-title>
-      {{(chat | async)?.title}}
+      <chat-title [chat] = "chat | async"></chat-title>
     </ion-title>
   </ion-navbar>
 

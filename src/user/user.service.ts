@@ -8,16 +8,14 @@ import { User } from './user';
 @Injectable()
 export class UserService {
 
-    usersRef: any = firebase.database().ref('users');
-
     constructor(private db: AngularFireDatabase) {
     }
 
     getUser(userUid: string) {
-        return this.usersRef.child(userUid).once('value');
+        return this.db.object('/users/' + userUid);
     }
 
-    getUsers(start, end): FirebaseListObservable<User[]> {
+    getUsers(start, end): FirebaseListObservable<any> {
         return this.db.list('/users', {
         query: {
             orderByChild: 'displayName',

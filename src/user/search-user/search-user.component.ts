@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
+
+import * as firebase from 'firebase/app';
 
 import { UserService } from '../user.service';
 
@@ -11,6 +13,8 @@ import { User } from '../user';
 })
 export class SearchUser {
 
+  @Output() clickOnUser: EventEmitter<any> = new EventEmitter();
+
   sub;
 
   users;
@@ -21,7 +25,14 @@ export class SearchUser {
 
   ngOnInit() {
     this.sub = this.userService.getUsers(this.startAt, this.endAt)
-                  .subscribe(users => { console.log(users); this.users = users; console.log(this.users) });
+        .subscribe(users =>
+                    { 
+                        this.users = users.filter(
+                          (user) => {
+                            if(user.$key !== firebase.auth().currentUser.uid)
+                               return true;
+                          });
+                    });
   }
 
   ngOnDestroy(){
@@ -35,4 +46,9 @@ export class SearchUser {
           this.endAt.next(q+"\uf8ff");
       }
   }
+
+  onUserClicked(userUid : string) {
+     this.clickOnUser.emit(userUid);
+  }
+
 }

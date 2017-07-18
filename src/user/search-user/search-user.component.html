@@ -9,7 +9,7 @@
     (ionCancel)="onCancel($event)">
 </ion-searchbar>
 <ion-list>
-    <ion-item class="text" *ngFor="let user of users">
+    <ion-item class="text" *ngFor="let user of users" (click) = "onUserClicked(user.$key)">
         <ion-avatar item-start>
             <img src="{{user?.photoUrl}}">
         </ion-avatar>

@@ -5,14 +5,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 
-import { ChatsList } from '../chat/chats-list/chats-list.component';
+import { ChatList } from '../chat/chat-list/chat-list.component';
 import { Login } from '../authentication/login/login.component';
 
 @Component({
   templateUrl: 'app.component.html'
 })
 export class MyApp {
-  rootPage : any = ChatsList;
+  rootPage : any = ChatList;
 
   constructor(private afAuth : AngularFireAuth, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
 
@@ -20,7 +20,7 @@ export class MyApp {
       if(!auth)
         this.rootPage = Login;
       else
-        this.rootPage = ChatsList;
+        this.rootPage = ChatList;
     });
 
     platform.ready().then(() => {

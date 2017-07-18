@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Nav } from 'ionic-angular';
 
 import { FirebaseListObservable } from 'angularfire2/database';
+import * as firebase from 'firebase/app';
 
 import { ChatService } from '../chat.service';
 import { CreateChat } from '../create-chat/create-chat.component'
@@ -10,15 +11,24 @@ import { ChatDetail } from '../chat-detail/chat-detail.component'
 
 import { UserProfile } from '../../user/user-profile/user-profile.component'
 
+import { Chat } from '../chat';
+
 @Component({
-  templateUrl: 'chats-list.component.html'
+  templateUrl: 'chat-list.component.html'
 })
-export class ChatsList {
+export class ChatList {
 
-  public chats : FirebaseListObservable<any[]>
+  public chatRefs : FirebaseListObservable<any[]>
 
-  constructor(private chatService: ChatService, private nav : Nav){
-      this.chats = this.chatService.getChats();
+
+  constructor(private chatService: ChatService, private nav : Nav){}
+
+  ngOnInit(){
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+          this.chatRefs = this.chatService.getChatsByUser(firebase.auth().currentUser.uid);
+      }
+    });
   }
 
   createNewChat(){
