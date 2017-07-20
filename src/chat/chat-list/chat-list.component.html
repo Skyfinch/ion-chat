@@ -19,10 +19,15 @@
 </ion-header>
 <ion-content>
     <ion-list>
-      <chat-list-item [chatUid] = "chatRef.$key"
-                 *ngFor="let chatRef of chatRefs | async" 
-                 (click) = "goToChat(chatRef.$key)">
-      </chat-list-item>
+      <ion-item  *ngFor="let chat of chats | async" 
+                 (click) = "goToChat(chat.$key)">
+          <ion-avatar item-start>
+          </ion-avatar>
+          <h2>
+              <chat-title [chat]="chat"></chat-title>
+          </h2>
+          <p>Ugh. As if.</p>
+      </ion-item>
     </ion-list>
     <button ion-button full (click) = "createNewChat()">
         Create new chat

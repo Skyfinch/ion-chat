@@ -25,12 +25,8 @@ export class ChatTitle {
             if(this.chat.title)
                 this.title = this.chat.title;
             else {
-                for (var memberUid in this.chat.members) {
-                    if(memberUid !== firebase.auth().currentUser.uid)
-                    this.userService.getUser(memberUid).take(1).subscribe((user) => {
-                        this.title += user.displayName;
-                    });
-                }    
+                this.chatService.getChatDefaultTitle(this.chat, firebase.auth().currentUser.uid)
+                    .subscribe((title) => this.title = title);
             }
         }
     }

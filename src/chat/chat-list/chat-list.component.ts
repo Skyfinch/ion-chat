@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 
 import { Nav } from 'ionic-angular';
 
+import {Observable} from 'rxjs/Observable';
+
 import { FirebaseListObservable } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
 
@@ -18,15 +20,14 @@ import { Chat } from '../chat';
 })
 export class ChatList {
 
-  public chatRefs : FirebaseListObservable<any[]>
-
+  public chats : Observable<Chat[]>
 
   constructor(private chatService: ChatService, private nav : Nav){}
 
   ngOnInit(){
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-          this.chatRefs = this.chatService.getChatsByUser(firebase.auth().currentUser.uid);
+          this.chats = this.chatService.getChatsByUser(firebase.auth().currentUser.uid);
       }
     });
   }
@@ -42,5 +43,4 @@ export class ChatList {
   goToUserProfile() {
     this.nav.push(UserProfile);
   }
-
 }

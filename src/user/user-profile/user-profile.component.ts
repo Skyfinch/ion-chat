@@ -23,7 +23,6 @@ export class UserProfile {
       if (user) {
           this.userService.getUser(firebase.auth().currentUser.uid).take(1).subscribe((snapshot) => {
             this.userProfile = snapshot;
-            console.log(this.userProfile);
           });
       }
     });
