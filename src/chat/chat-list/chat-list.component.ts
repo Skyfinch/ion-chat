@@ -20,6 +20,7 @@ import { Chat } from '../chat';
 })
 export class ChatList {
 
+  public userUid : string;
   public chats : Observable<Chat[]>
 
   constructor(private chatService: ChatService, private nav : Nav){}
@@ -27,7 +28,9 @@ export class ChatList {
   ngOnInit(){
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-          this.chats = this.chatService.getChatsByUser(firebase.auth().currentUser.uid);
+        this.userUid = firebase.auth().currentUser.uid;
+        this.chats = this.chatService.getChatsByUser(this.userUid);
+        console.log(this.chats);
       }
     });
   }

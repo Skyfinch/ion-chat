@@ -6,7 +6,7 @@
     </button>
 
     <ion-title>
-      <chat-title [chat] = "chat | async"></chat-title>
+      {{chat?.title}}
     </ion-title>
   </ion-navbar>
 
@@ -20,7 +20,7 @@
   </div>
   <ion-item>
     <ion-input type="text" [(ngModel)]="inputMessageContent" placeholder="Your message.."></ion-input>
-    <button ion-button item-right (click)="sendMessage()">
+    <button ion-button item-right (click)="sendMessage(chat.$key)">
       <ion-icon icon-only name="send">
       </ion-icon>
     </button>

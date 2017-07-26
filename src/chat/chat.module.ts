@@ -4,7 +4,6 @@ import { IonicModule } from 'ionic-angular';
 import { CreateChat } from './create-chat/create-chat.component';
 import { ChatDetail } from './chat-detail/chat-detail.component';
 import { ChatList } from './chat-list/chat-list.component';
-import { ChatTitle } from './chat-title/chat-title.component';
 import { UserModule } from '../user/user.module';
 
 import { ChatService } from './chat.service';
@@ -13,8 +12,7 @@ import { ChatService } from './chat.service';
     declarations: [
         ChatDetail,
         ChatList,
-        CreateChat,
-        ChatTitle
+        CreateChat
     ],
     imports: [
         IonicModule,

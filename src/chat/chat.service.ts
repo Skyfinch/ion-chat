@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+import * as firebase from 'firebase/app';
 
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 import { Subject }    from 'rxjs/Subject';
+import 'rxjs/add/operator/map'
 
 import { UserService} from '../user/user.service'
 
@@ -17,8 +19,23 @@ export class ChatService {
                 private userService : UserService) {
     }
 
-    getChat(chatUid : string) : FirebaseObjectObservable<Chat>{
-        return this.afDb.object("chats/" + chatUid);
+    /**
+     * Get a fully populated chat.
+     * @param chatUid Chat's uid.
+     */
+    getChat(chatUid : string) : Observable<Chat>{
+        return this.afDb.object("chats/" + chatUid)
+                .flatMap( (chat: Chat) => {
+                    let obsDefaultTitle = this.getChatTitle(chat);
+                    let obsDefaultPicture = this.getChatPicture(chat);
+                    return Observable.zip(Observable.of(chat), obsDefaultTitle, obsDefaultPicture)
+                        .map((data : any[]) => {
+                            let chat = data[0];
+                            chat.title = data[1];
+                            chat.photoUrl = data[2];
+                            return chat;
+                        })
+                });
     }
 
     getChats() : FirebaseListObservable<Chat[]>{
@@ -30,32 +47,54 @@ export class ChatService {
         this.afDb.object("users/" + userUid + "/chats/" + chatUid).set(true);        
     }
 
+    /**
+     * Get chats by user.
+     * @param userUid User's uid.
+     */
     getChatsByUser(userUid : string) : Observable<Chat[]> {
-        return new Observable<Chat[]>(observer => {
-            let chats = [];
-            this.afDb.list("users/" + userUid + "/chats/").take(1).subscribe( chatRefs => {
-                chatRefs.forEach(chatRef => {
-                    console.log(chatRef);
-                    this.getChat(chatRef.$key).take(1).subscribe( chat => {
-                        chats.push(chat);
-                        observer.next(chats);
-                    }) 
-                });
-            })
-        })
+        return this.afDb.list("users/" + userUid + "/chats/")
+            .flatMap(chatRefs => {
+                return Observable.forkJoin(
+                    chatRefs.map(chatRef => {
+                        return this.getChat(chatRef.$key).take(1);
+                    })
+                )
+            });
     }
 
-    getChatDefaultTitle(chat : Chat, currentUserUid : string) : Observable<string> {
-        return new Observable<string>(observer => {
-            let title = "";
-            for(var memberUid in chat.members) {
-                if(memberUid != currentUserUid)
-                    this.userService.getUser(memberUid).take(1).subscribe( user => {
-                        title += user.displayName;
-                        observer.next(title);
-                    })
-            }
-        })
+    /**
+     * Get chat title.
+     * @param chat The chat.
+     */
+    getChatTitle(chat : Chat) : Observable<string> {
+        if(!!chat.title) return Observable.of(chat.title);
+        else return Observable.of(Object.keys(chat.members))
+                        .flatMap((memberUids: string[]) =>{
+                            return Observable.forkJoin(
+                                        memberUids
+                                            .filter(memberUid => memberUid != firebase.auth().currentUser.uid)
+                                            .map((memberUid: any) => {
+                                                return  this.userService.getUser(memberUid).take(1)
+                                                            .map(member => member.displayName)
+                                            }))
+                                            .reduce((title, displayName) => {
+                                                return title += displayName;
+                                            },"")
+                        })
+    }
+
+    /**
+     * Get chat picture.
+     * @param chat The chat.
+     */
+    getChatPicture(chat : Chat) : Observable<string> {
+        if(!!chat.photoUrl) return Observable.of(chat.photoUrl);
+        else if(!!chat.oneToOne){
+            let userUid = Object.keys(chat.members).find(userRef => userRef != firebase.auth().currentUser.uid);
+            return this.userService.getUser(userUid)
+                    .map(user => user.photoUrl);
+        }
+        else return;
     }
 
     createOneToOneChat(userUidFst : string, userUidSnd : string){
