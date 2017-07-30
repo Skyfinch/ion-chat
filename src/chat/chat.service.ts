@@ -48,18 +48,25 @@ export class ChatService {
     }
 
     /**
-     * Get chats by user.
+     * Get chat refs by user.
      * @param userUid User's uid.
      */
     getChatsByUser(userUid : string) : Observable<Chat[]> {
-        return this.afDb.list("users/" + userUid + "/chats/")
-            .flatMap(chatRefs => {
-                return Observable.forkJoin(
-                    chatRefs.map(chatRef => {
-                        return this.getChat(chatRef.$key).take(1);
-                    })
-                )
-            });
+        return this.afDb.list("users/" + userUid + "/chats/");
+    }
+    
+    /**
+     * Search public chats.
+     */
+    searchPublicChats(start, end) : Observable<Chat[]> {
+        return this.afDb.list('/chats', {
+            query: {
+                orderByChild: 'title',
+                limitToFirst: 10,
+                startAt: start,
+                endAt: end
+            }
+        });
     }
 
     /**
@@ -94,9 +101,14 @@ export class ChatService {
             return this.userService.getUser(userUid)
                     .map(user => user.photoUrl);
         }
-        else return;
+        else return Observable.of(null);
     }
 
+    /**
+     * Creates a one-to-one chat.
+     * @param userUidFst The first user's id.
+     * @param userUidSnd  The second users' id.
+     */
     createOneToOneChat(userUidFst : string, userUidSnd : string){
         let chatUid = this.afDb.list("chats").push({
              oneToOne : true,
@@ -107,6 +119,21 @@ export class ChatService {
         this.afDb.object("users/" + userUidFst + "/relationships/" + userUidSnd).set(chatUid);         
         this.afDb.object("users/" + userUidSnd + "/relationships/" + userUidFst).set(chatUid);       
         return chatUid;    
+    }
+
+    /**
+     * Create a public chat.
+     * @param userUid The chat creator's id.
+     * @param title Chat's title.
+     */
+    createPublicChat(userUid: string, title: string) {
+        console.log(title);
+        let chatUid = this.afDb.list("chats").push({
+             oneToOne : false,
+             private : false,
+             title: title
+         }).key;
+        this.addUserToChat(chatUid, userUid);
     }
    
     getMessages(chatUid : string) : FirebaseListObservable<Message[]>{

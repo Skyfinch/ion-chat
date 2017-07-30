@@ -8,7 +8,7 @@ import { FirebaseListObservable } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
 
 import { ChatService } from '../chat.service';
-import { CreateChat } from '../create-chat/create-chat.component'
+import { NewChat } from '../new-chat/new-chat.component'
 import { ChatDetail } from '../chat-detail/chat-detail.component'
 
 import { UserProfile } from '../../user/user-profile/user-profile.component'
@@ -35,8 +35,8 @@ export class ChatList {
     });
   }
 
-  createNewChat(){
-      this.nav.push(CreateChat);
+  newChat(){
+      this.nav.push(NewChat);
   }
 
   goToChat(chatUid : string){

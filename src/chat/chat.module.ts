@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { IonicModule } from 'ionic-angular';
 
-import { CreateChat } from './create-chat/create-chat.component';
+import { NewChat } from './new-chat/new-chat.component';
 import { ChatDetail } from './chat-detail/chat-detail.component';
 import { ChatList } from './chat-list/chat-list.component';
+import { ChatListItem } from './chat-list/chat-list-item.component';
+import { SearchPublicChat } from './search-public-chat/search-public-chat.component';
 import { UserModule } from '../user/user.module';
 
 import { ChatService } from './chat.service';
@@ -12,7 +14,9 @@ import { ChatService } from './chat.service';
     declarations: [
         ChatDetail,
         ChatList,
-        CreateChat
+        ChatListItem,
+        NewChat,
+        SearchPublicChat
     ],
     imports: [
         IonicModule,
@@ -24,7 +28,7 @@ import { ChatService } from './chat.service';
     entryComponents: [
         ChatDetail,
         ChatList,
-        CreateChat,
+        NewChat
     ],
     providers:[
         ChatService

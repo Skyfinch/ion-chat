@@ -12,21 +12,25 @@ import { UserService } from '../../user/user.service';
 import { Chat } from '../chat';
 
 @Component({
-  templateUrl: 'create-chat.component.html'
+    selector: 'new-chat',
+    templateUrl: 'new-chat.component.html'
 })
-export class CreateChat {
-
-    chat : Chat = new Chat();
+export class NewChat {
 
     constructor(private chatService: ChatService, private nav : Nav, private userService : UserService){
     }
-    createNewChat(){
-       //this.chatService.createChat(this.chat);
+    createNewChat(chatTitle: string){
+        this.chatService.createPublicChat(firebase.auth().currentUser.uid, chatTitle);
         this.nav.pop();
     }
 
     onUserClicked(userUid : string) {
         let chatUid = this.chatService.createOneToOneChat(userUid, firebase.auth().currentUser.uid);
+        this.nav.pop();
+    }
+
+    onChatClicked(chatUid : string) {
+        this.chatService.addUserToChat(chatUid, firebase.auth().currentUser.uid);
         this.nav.pop();
     }
 

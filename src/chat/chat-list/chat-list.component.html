@@ -19,18 +19,12 @@
 </ion-header>
 <ion-content>
     <ion-list>
-      <ion-item  *ngFor="let chat of chats | async" 
-                 (click) = "goToChat(chat.$key)">
-          <ion-avatar item-start >
-             <img src="{{chat.photoUrl}}"> 
-          </ion-avatar>
-          <h2>
-              {{chat.title}}
-          </h2>
-          <p>Ugh. As if.</p>
-      </ion-item>
+      <chat-list-item  *ngFor="let chat of chats | async" 
+                        [uid] = "chat.$key"
+                        (click) = "goToChat(chat.$key)">
+      </chat-list-item>
     </ion-list>
-    <button ion-button full (click) = "createNewChat()">
-        Create new chat
+    <button ion-button full (click) = "newChat()">
+        New chat
     </button>
 </ion-content>

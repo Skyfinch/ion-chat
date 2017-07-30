@@ -1,0 +1,18 @@
+<ion-searchbar
+    type="text"
+    placeholder="Search public chat"
+    debounce="300"
+    animated="true"
+    [(ngModel)]="myInput"
+    [showCancelButton]="shouldShowCancel"
+    (ionInput)="search($event)"
+    (ionCancel)="onCancel($event)">
+</ion-searchbar>
+<ion-list>
+    <ion-item class="text" *ngFor="let chat of chats" (click) = "onChatClicked(chat.$key)">
+        <ion-avatar item-start>
+            <img src="{{chat?.photoUrl}}">
+        </ion-avatar>
+        <h2>{{chat?.title}}</h2>
+    </ion-item>
+</ion-list>

@@ -1,0 +1,50 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-title>
+      New chat
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content> 
+
+  <ion-card>
+    <ion-card-header>
+      Create private chat
+    </ion-card-header>
+    <ion-card-content>
+        Search a specific user and start to chat with him.
+       <search-user (clickOnUser) = "onUserClicked($event)"></search-user>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      Create public chat
+    </ion-card-header>
+    <ion-card-content>
+        <ion-item>
+            <ion-label color="primary" stacked>Chat title</ion-label>
+            <ion-input required #title type="text" placeholder="Title"></ion-input>
+        </ion-item>
+        <button ion-button full (click) = "createNewChat(title.value)">
+            Create
+        </button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      Join public chat
+    </ion-card-header>
+    <ion-card-content>
+        Search a specific public chat by name and join it.
+    </ion-card-content>
+  </ion-card>
+    
+</ion-content>
